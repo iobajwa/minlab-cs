@@ -1,5 +1,0 @@
-D:\dev\minilab\MiniLab\bin\Debug\MiniLab.dll
-D:\dev\minilab\MiniLab\bin\Debug\MiniLab.pdb
-D:\dev\minilab\MiniLab\obj\Debug\MiniLab.csprojResolveAssemblyReference.cache
-D:\dev\minilab\MiniLab\obj\Debug\MiniLab.dll
-D:\dev\minilab\MiniLab\obj\Debug\MiniLab.pdb
