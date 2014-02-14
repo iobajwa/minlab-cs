@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace MiniLab.Device
 {
-    public interface IMiniLabDevice
+    public interface IDigitalInputDevice
+    {
+        bool ReadDigitalInputPin(uint pinID);
+    }
+
+    public interface IMiniLabDevice : IDigitalInputDevice
     {
         bool Connected { get; }
 
@@ -14,7 +19,6 @@ namespace MiniLab.Device
         void Reset();
 
         void WriteDigitalOutputPin(uint pinID, bool status);
-        bool ReadDigitalInputPin(uint pinID);
 
         void WriteAnalogOutputPin(uint pinID, uint value);
         uint ReadAnalogInputPin(uint pinID);
