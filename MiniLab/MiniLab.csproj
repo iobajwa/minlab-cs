@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Device\AnalogInputPin.cs" />
     <Compile Include="Device\AnalogOutputPin.cs" />
     <Compile Include="Device\AnalogPin.cs" />
     <Compile Include="Device\DigitalInputPin.cs" />
