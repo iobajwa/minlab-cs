@@ -48,6 +48,8 @@
     <Compile Include="Device\Pin.cs" />
     <Compile Include="MiniLabTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Measurement\MeasurementContext.cs" />
+    <Compile Include="Measurement\DefaultMeasurementContexts.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

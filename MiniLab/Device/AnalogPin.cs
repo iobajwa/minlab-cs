@@ -4,52 +4,52 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using MiniLab.Measurement;
+
 namespace MiniLab.Device
 {
     public class AnalogPin : Pin
     {
+        protected Scale BinaryScale { get; set; }
+
         /// <summary>
         /// Gets the Minimum value (in binary) which can be written onto the Analog Pin.
         /// </summary>
-        public uint BinaryMinimum { get; protected internal set; }
+        public uint BinaryMinimum { get { return (uint)BinaryScale.Minimum; } }
 
         /// <summary>
         /// Gets the Maximum value (in binary) which can be written onto the Analog Pin.
         /// </summary>
-        public uint BinaryMaximum { get; protected internal set; }
+        public uint BinaryMaximum { get { return (uint)BinaryScale.Maximum; } }
+
+        /// <summary>
+        /// Gets the Measurement Context (Physical Quantity being measured, Scale and Unit of measurement) that
+        /// the pin is configured for.
+        /// </summary>
+        public MeasurementContext MeasurementContext { get; private set; }
 
 
+        /// <summary>
+        /// Creates a new AnalogPin instance.
+        /// </summary>
+        /// <param name="pinID">The pinID to identify the pin on the underlying hardware.</param>
+        /// <param name="binaryMinimum">The minimum value that can be measured.</param>
+        /// <param name="binaryMaximum">The maximum value that can be measured.</param>
         public AnalogPin(uint pinID, uint binaryMinimum, uint binaryMaximum) : base(pinID)
         {
-            BinaryMinimum = binaryMinimum;
-            BinaryMaximum = binaryMaximum;
+            BinaryScale = new Measurement.Scale(binaryMinimum, binaryMaximum);
         }
 
-        //public Scale CurrentScale { get; set; }
 
-        //public void ConfigureFor<T>()
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //public void ConfigureFor<T>(float min, float max)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //public void ConfigureScaleFor<T>()
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //public void ConfigureScaleFor<T>(float min, float max)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //public void Set<T>(float value)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        /// <summary>
+        /// Configures the Measurement Context (Physical Quantity being measured and it's Scale, Units) for
+        /// measurements taken for the current pin.
+        /// </summary>
+        /// <typeparam name="T">The Measurement Context to configure from.</typeparam>
+        public MeasurementContext ConfigureScaleFor<T>() where T : MeasurementContext, new()
+        {
+            MeasurementContext = new T();
+            return MeasurementContext;
+        }
     }
 }
