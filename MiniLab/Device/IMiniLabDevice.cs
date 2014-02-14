@@ -16,14 +16,18 @@ namespace MiniLab.Device
         void WriteDigitalOutputPin(uint pinID, bool state);
     }
 
-    public interface IMiniLabDevice : IDigitalInputDevice, IDigitalOutputDevice
+    public interface IAnalogOutputDevice
+    {
+        void WriteAnalogOutputPin(uint pinID, uint value);
+    }
+
+    public interface IMiniLabDevice : IDigitalInputDevice, IDigitalOutputDevice, IAnalogOutputDevice
     {
         bool Connected { get; }
 
         void Connect();
         void Reset();
 
-        void WriteAnalogOutputPin(uint pinID, uint value);
         uint ReadAnalogInputPin(uint pinID);
     }
 }
