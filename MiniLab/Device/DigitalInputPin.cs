@@ -6,14 +6,13 @@ using System.Threading.Tasks;
 
 namespace MiniLab.Device
 {
-    public class DigitalInputPin
+    public class DigitalInputPin : Pin
     {
-        public uint PinID { get; private set; }
         IDigitalInputDevice _parent;
         public IDigitalInputDevice ParentDevice { get { return _parent; } }
 
-        public DigitalInputPin(uint pinID, IDigitalInputDevice parent)
-        { PinID = pinID; _parent = parent; }
+        public DigitalInputPin(uint pinID, IDigitalInputDevice parent) : base(pinID)
+        { _parent = parent; }
 
         public bool IsSet 
         {
@@ -24,5 +23,8 @@ namespace MiniLab.Device
         {
             get { return _parent.ReadDigitalInputPin(PinID) == false; }
         }
+
+        public bool State
+        { get { return _parent.ReadDigitalInputPin(PinID); } }
     }
 }

@@ -24,6 +24,12 @@ namespace MiniLab.Tests.Device
             _pin = new DigitalInputPin(3, _mockParent.Object);
         }
 
+        [TearDown]
+        public void TearDown()
+        {
+            _mockParent.VerifyAll();
+        }
+
         [Test]
         public void _01_Parent_SHOULD_return_the_same_parent_reference_which_was_passed_to_it_during_construction()
         {
@@ -66,6 +72,22 @@ namespace MiniLab.Tests.Device
             _mockParent.Setup(parent => parent.ReadDigitalInputPin(3)).Returns(true);
 
             Assert.That(_pin.IsReset, Is.False);
+        }
+
+        [Test]
+        public void _07_State_SHOULD_return_false_WHEN_pin_is_set_on_parent_device()
+        {
+            _mockParent.Setup(parent => parent.ReadDigitalInputPin(3)).Returns(false);
+
+            Assert.That(_pin.State, Is.False);
+        }
+
+        [Test]
+        public void _08_State_SHOULD_return_true_WHEN_pin_is_set_on_parent_device()
+        {
+            _mockParent.Setup(parent => parent.ReadDigitalInputPin(3)).Returns(true);
+
+            Assert.That(_pin.State, Is.True);
         }
     }   
 }

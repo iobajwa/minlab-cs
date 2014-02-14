@@ -40,7 +40,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Device\DigitalInputPin.cs" />
+    <Compile Include="Device\DigitalOutputPin.cs" />
     <Compile Include="Device\IMiniLabDevice.cs" />
+    <Compile Include="Device\Pin.cs" />
     <Compile Include="MiniLabTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
