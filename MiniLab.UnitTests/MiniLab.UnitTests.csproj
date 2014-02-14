@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Device\AnalogOutputPinTests.cs" />
+    <Compile Include="Device\AnalogPinTests.cs" />
     <Compile Include="Device\DigitalInputPinTests.cs" />
     <Compile Include="Device\DigitalOutputPinTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

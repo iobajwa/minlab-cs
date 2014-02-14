@@ -9,7 +9,7 @@ using MiniLab.Device;
 using NUnit.Framework;
 using Moq;
 
-namespace MiniLab.Tests.Device
+namespace MiniLab.Tests.Device.Analog.AnalogOutput
 {
     #region base test class
     public class analog_output_pin_test_base
@@ -36,24 +36,17 @@ namespace MiniLab.Tests.Device
     public class when_constructing_a_new_AnalogOutputPin : analog_output_pin_test_base
     {
         [Test]
-        public void _01_Parent_SHOULD_return_the_same_parent_reference_which_was_passed_to_it_during_construction()
+        public void _01_SHOULD_derive_from_AnalogPin_base_class()
+        {
+            AnalogPin baseObject = _pin as AnalogPin;
+
+            Assert.That(baseObject, Is.Not.Null);
+        }
+
+        [Test]
+        public void _02_Parent_SHOULD_return_the_same_parent_reference_which_was_passed_to_it_during_construction()
         {
             Assert.That(_pin.ParentDevice, Is.EqualTo(_mockParent.Object));
-        }
-
-        [Test]
-        public void _02_PinID_SHOULD_return_the_same_value_which_was_passed_to_it_during_construction()
-        {
-            Assert.That(_pin.PinID, Is.EqualTo(1));
-        }
-
-        [Test]
-        public void _03_BinaryMinimum_and_BinaryMaximum_SHOULD_return_corrects_value_which_were_passed_to_them_during_construction()
-        {
-            _pin = new AnalogOutputPin(0, null, 5, 10);
-
-            Assert.That(_pin.BinaryMinimum, Is.EqualTo(5));
-            Assert.That(_pin.BinaryMaximum, Is.EqualTo(10));
         }
     }
 

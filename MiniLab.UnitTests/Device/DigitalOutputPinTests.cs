@@ -9,7 +9,7 @@ using MiniLab.Device;
 using NUnit.Framework;
 using Moq;
 
-namespace MiniLab.Tests.Device
+namespace MiniLab.Tests.Device.Digital
 {
     [TestFixture]
     public class when_interacting_with_DigitalOutputPin

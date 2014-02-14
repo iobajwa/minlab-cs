@@ -6,32 +6,21 @@ using System.Threading.Tasks;
 
 namespace MiniLab.Device
 {
-    public class AnalogOutputPin : Pin
+    public class AnalogOutputPin : AnalogPin
     {
         public AnalogOutputPin(uint pinID, IAnalogOutputDevice parent)
-            : base(pinID)
+            : base(pinID, 0, 0)
         { _parent = parent; }
 
         public AnalogOutputPin(uint pinID, IAnalogOutputDevice parent, uint binaryMinimum, uint binaryMaximum)
-            : this(pinID, parent)
-        { BinaryMinimum = binaryMinimum; BinaryMaximum = binaryMaximum; }
+            : base(pinID, binaryMinimum, binaryMaximum)
+        { _parent = parent; }
 
         IAnalogOutputDevice _parent;
         /// <summary>
         /// Gets the reference of the underlying Parent Device.
         /// </summary>
         public IAnalogOutputDevice ParentDevice { get { return _parent; } }
-
-        //public Scale CurrentScale { get; set; }
-        /// <summary>
-        /// Gets the Minimum value (in binary) which can be written onto the Analog Pin.
-        /// </summary>
-        public uint BinaryMinimum { get; protected internal set; }
-
-        /// <summary>
-        /// Gets the Maximum value (in binary) which can be written onto the Analog Pin.
-        /// </summary>
-        public uint BinaryMaximum { get; protected internal set; }
 
         /// <summary>
         /// Writes the passed binary value onto the underlying analog pin on the parent device.
@@ -48,29 +37,6 @@ namespace MiniLab.Device
             _parent.WriteAnalogOutputPin(PinID, binaryValue);
         }
 
-        //public void ConfigureFor<T>()
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //public void ConfigureFor<T>(float min, float max)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //public void ConfigureScaleFor<T>()
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //public void ConfigureScaleFor<T>(float min, float max)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //public void Set<T>(float value)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        
     }
 }
