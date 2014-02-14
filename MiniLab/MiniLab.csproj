@@ -39,7 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IMiniLabDevice.cs" />
+    <Compile Include="Device\IMiniLabDevice.cs" />
     <Compile Include="MiniLabTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

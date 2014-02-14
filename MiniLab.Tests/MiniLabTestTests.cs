@@ -8,11 +8,12 @@ using NUnit.Framework;
 using Moq;
 
 using MiniLab;
+using MiniLab.Device;
 
 namespace MiniLab.Tests
 {
     [TestFixture]
-    public class when_creating_a_new_MiniLab_instance
+    public class when_creating_a_new_MiniLabTest_instance
     {
         Mock<IMiniLabDevice> _mockUSBDevice;
         MiniLabTest _miniLabTestBase;
@@ -44,6 +45,15 @@ namespace MiniLab.Tests
             _mockUSBDevice.Setup(device => device.Connected).Returns(true);
 
             _miniLabTestBase = new MiniLabTest(_mockUSBDevice.Object);
+        }
+
+        [Test]
+        public void _03_MiniLab_public_property_SHOULD_return_same_reference_that_was_passed_while_construction()
+        {
+            _mockUSBDevice.Setup(device => device.Connected).Returns(true);
+            _miniLabTestBase = new MiniLabTest(_mockUSBDevice.Object);
+
+            Assert.That(_miniLabTestBase.MiniLab, Is.EqualTo(_mockUSBDevice.Object));
         }
     }
 }
