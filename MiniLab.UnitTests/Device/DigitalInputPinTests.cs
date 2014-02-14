@@ -25,7 +25,19 @@ namespace MiniLab.Tests.Device
         }
 
         [Test]
-        public void _01_IsSet_SHOULD_return_true_WHEN_the_pin_is_set_on_parent_device()
+        public void _01_Parent_SHOULD_return_the_same_parent_reference_which_was_passed_to_it_during_construction()
+        {
+            Assert.That(_pin.ParentDevice, Is.EqualTo(_mockParent.Object));
+        }
+
+        [Test]
+        public void _02_PinID_SHOULD_return_the_same_value_which_was_passed_to_it_during_construction()
+        {
+            Assert.That(_pin.PinID, Is.EqualTo(3));
+        }
+
+        [Test]
+        public void _03_IsSet_SHOULD_return_true_WHEN_the_pin_is_set_on_parent_device()
         {
             _mockParent.Setup(parent => parent.ReadDigitalInputPin(3)).Returns(true);
 
@@ -33,7 +45,7 @@ namespace MiniLab.Tests.Device
         }
 
         [Test]
-        public void _02_IsSet_SHOULD_return_false_WHEN_the_pin_is_reset_on_parent_device()
+        public void _04_IsSet_SHOULD_return_false_WHEN_the_pin_is_reset_on_parent_device()
         {
             _mockParent.Setup(parent => parent.ReadDigitalInputPin(3)).Returns(false);
 
@@ -41,7 +53,7 @@ namespace MiniLab.Tests.Device
         }
 
         [Test]
-        public void _03_IsReset_SHOULD_return_true_WHEN_the_pin_is_reset_on_parent_device()
+        public void _05_IsReset_SHOULD_return_true_WHEN_the_pin_is_reset_on_parent_device()
         {
             _mockParent.Setup(parent => parent.ReadDigitalInputPin(3)).Returns(false);
 
@@ -49,7 +61,7 @@ namespace MiniLab.Tests.Device
         }
 
         [Test]
-        public void _04_IsReset_SHOULD_return_false_WHEN_the_pin_is_set_on_parent_device()
+        public void _06_IsReset_SHOULD_return_false_WHEN_the_pin_is_set_on_parent_device()
         {
             _mockParent.Setup(parent => parent.ReadDigitalInputPin(3)).Returns(true);
 
