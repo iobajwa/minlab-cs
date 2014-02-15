@@ -27,4 +27,15 @@ namespace MiniLab.Measurement
             : base(scale, Unit.Celcius, PhysicalQuantity.Temperature)
         { }
     }
+
+    public class CurrentInAmperes : MeasurementContext
+    {
+        public CurrentInAmperes()
+            : base(new Scale(0, 10), Unit.Ampere, PhysicalQuantity.DCCurrent)
+        { }
+
+        public CurrentInAmperes(Scale scale)
+            : base(scale, Unit.Ampere, PhysicalQuantity.DCCurrent)
+        { }
+    }
 }

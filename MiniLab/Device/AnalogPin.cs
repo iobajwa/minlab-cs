@@ -26,7 +26,7 @@ namespace MiniLab.Device
         /// Gets the Measurement Context (Physical Quantity being measured, Scale and Unit of measurement) that
         /// the pin is configured for.
         /// </summary>
-        public MeasurementContext MeasurementContext { get; private set; }
+        public MeasurementContext ConfiguredMeasurementContext { get; private set; }
 
 
         /// <summary>
@@ -48,8 +48,8 @@ namespace MiniLab.Device
         /// <typeparam name="T">The Measurement Context to configure from.</typeparam>
         public MeasurementContext ConfigureScaleFor<T>() where T : MeasurementContext, new()
         {
-            MeasurementContext = new T();
-            return MeasurementContext;
+            ConfiguredMeasurementContext = new T();
+            return ConfiguredMeasurementContext;
         }
     }
 }

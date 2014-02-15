@@ -4,28 +4,29 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using MiniLab.Measurement;
+
 namespace MiniLab.Device
 {
     public class AnalogOutputPin : AnalogPin
     {
         public AnalogOutputPin(uint pinID, IAnalogOutputDevice parent)
             : base(pinID, 0, 0)
-        { _parent = parent; }
+        { ParentDevice = parent; }
 
         public AnalogOutputPin(uint pinID, IAnalogOutputDevice parent, uint binaryMinimum, uint binaryMaximum)
             : base(pinID, binaryMinimum, binaryMaximum)
-        { _parent = parent; }
+        { ParentDevice = parent; }
 
-        IAnalogOutputDevice _parent;
         /// <summary>
-        /// Gets the reference of the underlying Parent Device.
+        /// Gets the reference to the underlying Parent Device.
         /// </summary>
-        public IAnalogOutputDevice ParentDevice { get { return _parent; } }
+        public IAnalogOutputDevice ParentDevice { get; protected set; }
 
         /// <summary>
-        /// Writes the passed binary value onto the underlying analog pin on the parent device.
-        /// Note: Value is automatically trunacted to fit between BinaryMinimum and BinaryMaximum in case the
-        /// passed value is beyond the range.
+        /// Writes the passed binary value onto the underlying analog pin of the parent device.
+        /// Note: Value is automatically trunacted to fit inside the BinaryScale.
+        /// <param name="binaryValue">The raw value to write onto the pin.</param>
         /// </summary>
         public void Set(uint binaryValue)
         {
@@ -34,9 +35,25 @@ namespace MiniLab.Device
             else if (binaryValue < BinaryMinimum)
                 binaryValue = BinaryMinimum;
 
-            _parent.WriteAnalogOutputPin(PinID, binaryValue);
+            ParentDevice.WriteAnalogOutputPin(PinID, binaryValue);
         }
 
-        
+        /// <summary>
+        /// Writes the passed scaled value onto the underlying analog pin of the parent device.
+        /// Note: The value is automatically trunacted to fit inside the BinaryScale.
+        /// </summary>
+        /// <typeparam name="T">Provide a MeasurementContext.</typeparam>
+        /// <param name="value">The value to write onto the pin.</param>
+        public void Set<T>(double value) where T : MeasurementContext, new()
+        {
+            T measurementContextOfValue = new T();
+
+            if (!ConfiguredMeasurementContext.IsIdentical(measurementContextOfValue))
+                throw new InvalidOperationException("Configured units for the pin and units of passed value do no match.");
+
+            uint rawValue = (uint)ConfiguredMeasurementContext.Scale.ScaleValue(value, BinaryScale);
+
+            ParentDevice.WriteAnalogOutputPin(PinID, rawValue);
+        }
     }
 }

@@ -41,4 +41,86 @@ namespace MiniLab.Tests.Measurement
             Assert.That(_context.Scale.Maximum, Is.EqualTo(100));
         }
     }
+
+    [TestFixture]
+    public class when_comparing_two_measurement_contexts
+    {
+        MeasurementContext _context;
+
+        [SetUp]
+        public void Setup()
+        {
+            _context = new MeasurementContext(new Scale(1, 10), Unit.Celcius, PhysicalQuantity.Temperature);
+        }
+
+        [Test]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void _01_SHOULD_throw_ArgumentNullException_WHEN_toOtherContext_is_passed_null()
+        {
+            _context.IsIdentical(null);
+        }
+
+        [Test]
+        public void _02_IsIdentical_SHOULD_return_false_WHEN_Unit_of_new_context_does_not_matches()
+        {
+            MeasurementContext newContext = new MeasurementContext(new Scale(0, 10), Unit.Ampere, PhysicalQuantity.Temperature);
+            bool result;
+
+            result = _context.IsIdentical(newContext);
+
+            Assert.That(result, Is.False);
+        }
+
+        [Test]
+        public void _03_IsIdentical_SHOULD_return_false_WHEN_PhysicalQuantity_of_new_context_does_not_matches()
+        {
+            MeasurementContext newContext = new MeasurementContext(new Scale(0, 10), Unit.Celcius, PhysicalQuantity.Pressure);
+            bool result;
+
+            result = _context.IsIdentical(newContext);
+
+            Assert.That(result, Is.False);
+        }
+
+        [Test]
+        public void _04_IsIdentical_SHOULD_return_true_WHEN_both_Unit_and_PhysicalQuantity_of_new_context_match()
+        {
+            MeasurementContext newContext = new MeasurementContext(new Scale(0, 10), Unit.Celcius, PhysicalQuantity.Temperature);
+            bool result;
+
+            result = _context.IsIdentical(newContext);
+
+            Assert.That(result, Is.True);
+        }
+    }
+
+    [TestFixture]
+    public class when_scaling_values
+    {
+        Scale _referenceScale;
+
+        [SetUp]
+        public void Setup()
+        {
+            _referenceScale = new Scale(0, 100);
+        }
+
+        [Test]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void _01_SHOULD_throw_NullArgumentException_WHEN_newScale_is_passed_null()
+        {
+            _referenceScale.ScaleValue(45, null);
+        }
+
+        [Test]
+        public void _02_SHOULD_convert_passed_value_to_new_scale()
+        {
+            Scale newScale = new Scale(-100, 100);
+            double scaledValue;
+
+            scaledValue = _referenceScale.ScaleValue(50, newScale);
+
+            Assert.That(scaledValue, Is.EqualTo(0));
+        }
+    }
 }

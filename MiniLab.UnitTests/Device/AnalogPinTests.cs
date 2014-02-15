@@ -56,7 +56,7 @@ namespace MiniLab.Tests.Device.Analog
 
             returnedContextReference = _pin.ConfigureScaleFor<TemperatureInDegreeCelcius>();
 
-            configuredContextReference = _pin.MeasurementContext;
+            configuredContextReference = _pin.ConfiguredMeasurementContext;
             Assert.That(configuredContextReference.GetType(), Is.EqualTo(expectedType));
             Assert.That(returnedContextReference, Is.EqualTo(configuredContextReference));
         }

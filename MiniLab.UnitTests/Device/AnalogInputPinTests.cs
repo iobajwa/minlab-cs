@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using MiniLab.Device;
+using MiniLab.Measurement;
 
 using NUnit.Framework;
 using Moq;
@@ -62,6 +63,37 @@ namespace MiniLab.Tests.Device.Analog.AnalogInput
             readValue = _pin.Read();
 
             Assert.That(readValue, Is.EqualTo(expectedValue));
+        }
+    }
+
+    [TestFixture]
+    public class when_reading_scaled_value_from_an_analog_pin : analog_input_pin_test_base
+    {
+        [SetUp]
+        new public void Setup()
+        {
+            _pin = new AnalogInputPin(1, _mockParent.Object, 0, 200);
+        }
+
+        [Test]
+        [ExpectedException(typeof(InvalidOperationException), ExpectedMessage = "Configured units for the pin and units of passed value do no match.")]
+        public void _01_SHOULD_throw_InvalidOperationException_WHEN_passed_MeasurementContext_is_in_voilation_with_the_configured_MeasurementContext()
+        {
+            _pin.ConfigureScaleFor<TemperatureInDegreeCelcius>().WithRangeFrom(45).To(60);
+
+            _pin.Read<CurrentInAmperes>();
+        }
+
+        [Test]
+        public void _02_SHOULD_return_the_scaled_value()
+        {
+            _mockParent.Setup(parent => parent.ReadAnalogInputPin(1)).Returns(101);
+            _pin.ConfigureScaleFor<TemperatureInDegreeCelcius>().WithRangeFrom(0).To(100);
+            double readValue;
+
+            readValue = _pin.Read<TemperatureInDegreeCelcius>();
+
+            Assert.That(readValue, Is.EqualTo(50.5));
         }
     }
 }
