@@ -55,5 +55,13 @@ namespace MiniLab.Device
 
             ParentDevice.WriteAnalogOutputPin(PinID, rawValue);
         }
+
+        /// <summary>
+        /// Resets the Analog Pin on the underlying Hardware by writing BinaryMinimum as output.
+        /// </summary>
+        public override void Reset()
+        {
+            ParentDevice.WriteAnalogOutputPin(PinID, BinaryMinimum);
+        }
     }
 }

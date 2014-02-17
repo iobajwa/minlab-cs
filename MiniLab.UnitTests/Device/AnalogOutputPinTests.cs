@@ -112,4 +112,16 @@ namespace MiniLab.Tests.Device.Analog.AnalogOutput
             _pin.Set<TemperatureInDegreeCelcius>(50.5);
         }
     }
+
+    [TestFixture]
+    public class when_interacting_with_an_analog_pin : analog_output_pin_test_base
+    {
+        [Test]
+        public void _01_Reset_SHOULD_direct_the_underlying_hardware_to_reset_the_analog_output_to_binary_minimum()
+        {
+            _mockParent.Setup(parent => parent.WriteAnalogOutputPin(_pin.PinID, _pin.BinaryMinimum));
+
+            _pin.Reset();
+        }
+    }
 }

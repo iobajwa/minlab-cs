@@ -37,7 +37,7 @@ namespace MiniLab.Device
         /// <summary>
         /// Sets the pin state on the underlying hardware to Logic Low.
         /// </summary>
-        public void Reset()
+        public override void Reset()
         {
             SetPinStateOnParent(false);
         }
