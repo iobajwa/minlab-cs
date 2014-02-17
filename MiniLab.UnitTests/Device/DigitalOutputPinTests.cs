@@ -49,5 +49,21 @@ namespace MiniLab.Tests.Device.Digital
 
             _pin.State = true;
         }
+
+        [Test]
+        public void _04_Set_SHOULD_should_direct_the_parent_to_Set_the_pin_to_Logic_High()
+        {
+            _mockParent.Setup(parent => parent.WriteDigitalOutputPin(5, true));
+
+            _pin.Set();
+        }
+
+        [Test]
+        public void _05_Reset_SHOULD_should_direct_the_parent_to_reset_the_pin_to_Low()
+        {
+            _mockParent.Setup(parent => parent.WriteDigitalOutputPin(5, false));
+
+            _pin.Reset();
+        }
     }
 }

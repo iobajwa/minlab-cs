@@ -6,14 +6,45 @@ using System.Threading.Tasks;
 
 namespace MiniLab.Device
 {
-    public class DigitalOutputPin : Pin
+    public interface IDigitalOutputPin
     {
-        IDigitalOutputDevice _parent;
-        public IDigitalOutputDevice ParentDevice { get { return _parent; } }
+        bool State { set; }
+
+        void Set();
+        void Reset();
+    }
+
+    public class DigitalOutputPin : Pin, IDigitalOutputPin
+    {
+        public IDigitalOutputDevice ParentDevice { get; private set; }
 
         public DigitalOutputPin(uint pinID, IDigitalOutputDevice parent) : base(pinID)
-        { _parent = parent; }
+        { ParentDevice = parent; }
 
-        public bool State { set { _parent.WriteDigitalOutputPin(PinID, value); } }
+        /// <summary>
+        /// Sets or Resets the state of the pin on the underlying hardware
+        /// </summary>
+        public bool State { set { SetPinStateOnParent(value); } }
+
+        /// <summary>
+        /// Sets the pin state on the underlying hardware to Logic High.
+        /// </summary>
+        public void Set()
+        {
+            SetPinStateOnParent(true);
+        }
+
+        /// <summary>
+        /// Sets the pin state on the underlying hardware to Logic Low.
+        /// </summary>
+        public void Reset()
+        {
+            SetPinStateOnParent(false);
+        }
+
+        private void SetPinStateOnParent(bool state)
+        {
+            ParentDevice.WriteDigitalOutputPin(PinID, state);
+        }
     }
 }
