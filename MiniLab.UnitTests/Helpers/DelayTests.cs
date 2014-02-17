@@ -11,7 +11,7 @@ using SystemInterface.Threading;
 using NUnit.Framework;
 using Moq;
 
-namespace MiniLab.Tests.Hepers.Delays
+namespace MiniLab.Tests.Helpers.Delays
 {
     class basic_delay_test_fixture
     {
