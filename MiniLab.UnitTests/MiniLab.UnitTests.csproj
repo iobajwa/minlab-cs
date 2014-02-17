@@ -53,6 +53,7 @@
     <Compile Include="Device\AnalogPinTests.cs" />
     <Compile Include="Device\DigitalInputPinTests.cs" />
     <Compile Include="Device\DigitalOutputPinTests.cs" />
+    <Compile Include="Device\PinCollectionTests.cs" />
     <Compile Include="Helpers\DelayTests.cs" />
     <Compile Include="Helpers\DummyKeyTests.cs" />
     <Compile Include="Helpers\GestureTests.cs" />

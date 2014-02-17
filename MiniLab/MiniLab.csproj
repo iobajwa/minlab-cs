@@ -49,6 +49,7 @@
     <Compile Include="Device\DigitalOutputPin.cs" />
     <Compile Include="Device\IMiniLabDevice.cs" />
     <Compile Include="Device\Pin.cs" />
+    <Compile Include="Device\PinCollection.cs" />
     <Compile Include="Helpers\Delay.cs" />
     <Compile Include="Helpers\DummyKey.cs" />
     <Compile Include="Helpers\Gesture.cs" />
