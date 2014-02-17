@@ -55,6 +55,7 @@
     <Compile Include="Device\DigitalOutputPinTests.cs" />
     <Compile Include="Helpers\DelayTests.cs" />
     <Compile Include="Helpers\DummyKeyTests.cs" />
+    <Compile Include="Helpers\GestureTests.cs" />
     <Compile Include="Measurement\MeasurementContextTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="MiniLabTestTests.cs" />
