@@ -43,6 +43,9 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="SystemInterface">
+      <HintPath>..\lib\SystemWrapper\SystemInterface.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Device\AnalogInputPinTests.cs" />
@@ -50,6 +53,7 @@
     <Compile Include="Device\AnalogPinTests.cs" />
     <Compile Include="Device\DigitalInputPinTests.cs" />
     <Compile Include="Device\DigitalOutputPinTests.cs" />
+    <Compile Include="Hepers\DelayTests.cs" />
     <Compile Include="Measurement\MeasurementContextTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="MiniLabTestTests.cs" />
@@ -60,6 +64,7 @@
       <Name>MiniLab</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
