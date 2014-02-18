@@ -47,7 +47,6 @@
     <Compile Include="Device\AnalogPin.cs" />
     <Compile Include="Device\DigitalInputPin.cs" />
     <Compile Include="Device\DigitalOutputPin.cs" />
-    <Compile Include="Device\IMiniLabDevice.cs" />
     <Compile Include="Device\Pin.cs" />
     <Compile Include="Device\PinCollection.cs" />
     <Compile Include="Helpers\Delay.cs" />
@@ -58,7 +57,12 @@
     <Compile Include="Measurement\MeasurementContext.cs" />
     <Compile Include="Measurement\DefaultMeasurementContexts.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\MiniLab.Device\MiniLab.Device.csproj">
+      <Project>{13ac59c7-ecc3-4fe9-8bc5-b58a9177fba6}</Project>
+      <Name>MiniLab.Device</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

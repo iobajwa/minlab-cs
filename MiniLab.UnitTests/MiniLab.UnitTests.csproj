@@ -63,6 +63,10 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <ProjectReference Include="..\MiniLab.Device\MiniLab.Device.csproj">
+      <Project>{13ac59c7-ecc3-4fe9-8bc5-b58a9177fba6}</Project>
+      <Name>MiniLab.Device</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MiniLab.Testing\MiniLab.Testing.csproj">
       <Project>{9ee087b0-5e99-4980-8fb0-56b77672514e}</Project>
       <Name>MiniLab.Testing</Name>
