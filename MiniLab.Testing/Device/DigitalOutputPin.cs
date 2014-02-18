@@ -16,12 +16,13 @@ namespace MiniLab.Testing.Device
         void Reset();
     }
 
-    public class DigitalOutputPin : Pin, IDigitalOutputPin
+    public class DigitalOutputPin : DigitalPin, IDigitalOutputPin
     {
-        public IDigitalOutputDevice ParentDevice { get; private set; }
+        new public IDigitalOutputDevice ParentDevice { get; private set; }
 
-        public DigitalOutputPin(uint pinID, IDigitalOutputDevice parent) : base(pinID)
-        { ParentDevice = parent; }
+        public DigitalOutputPin(uint pinID, IDigitalOutputDevice parent)
+            : base(pinID, parent)
+        { }
 
         /// <summary>
         /// Sets or Resets the state of the pin on the underlying hardware

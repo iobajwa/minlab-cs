@@ -6,24 +6,30 @@ using System.Threading.Tasks;
 
 namespace MiniLab.Device
 {
-    public interface IDigitalInputDevice
+    public interface IDigitalDevice
+    { }
+
+    public interface IDigitalInputDevice : IDigitalDevice
     {
         bool ReadDigitalInputPin(uint pinID);
     }
 
-    public interface IDigitalOutputDevice
+    public interface IDigitalOutputDevice : IDigitalDevice
     {
         void WriteDigitalOutputPin(uint pinID, bool state);
     }
 
-    public interface IAnalogOutputDevice
+    public interface IAnalogDevice
+    { }
+
+    public interface IAnalogOutputDevice : IAnalogDevice
     {
         void WriteAnalogOutputPin(uint pinID, uint value);
     }
 
-    public interface IAnalogInputDevice
+    public interface IAnalogInputDevice : IAnalogDevice
     {
-        uint ReadAnalogInputPin(uint pinID);        
+        uint ReadAnalogInputPin(uint pinID);
     }
 
     public interface IMiniLabDevice : IDigitalInputDevice, IDigitalOutputDevice, IAnalogInputDevice, IAnalogOutputDevice
@@ -31,6 +37,6 @@ namespace MiniLab.Device
         bool Connected { get; }
 
         void Connect();
-        void Reset();
+        //void Reset();
     }
 }

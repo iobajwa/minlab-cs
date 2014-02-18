@@ -8,25 +8,25 @@ using MiniLab.Device;
 
 namespace MiniLab.Testing.Device
 {
-    public class DigitalInputPin : Pin
+    public class DigitalInputPin : DigitalPin
     {
-        IDigitalInputDevice _parent;
-        public IDigitalInputDevice ParentDevice { get { return _parent; } }
+        new public IDigitalInputDevice ParentDevice { get; private set; }
 
-        public DigitalInputPin(uint pinID, IDigitalInputDevice parent) : base(pinID)
-        { _parent = parent; }
+        public DigitalInputPin(uint pinID, IDigitalInputDevice parent)
+            : base(pinID, parent)
+        { }
 
         public bool IsSet 
         {
-            get { return _parent.ReadDigitalInputPin(PinID) == true; }
+            get { return ParentDevice.ReadDigitalInputPin(PinID) == true; }
         }
 
         public bool IsReset
         {
-            get { return _parent.ReadDigitalInputPin(PinID) == false; }
+            get { return ParentDevice.ReadDigitalInputPin(PinID) == false; }
         }
 
         public bool State
-        { get { return _parent.ReadDigitalInputPin(PinID); } }
+        { get { return ParentDevice.ReadDigitalInputPin(PinID); } }
     }
 }

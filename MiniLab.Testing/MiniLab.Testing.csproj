@@ -47,6 +47,7 @@
     <Compile Include="Device\AnalogPin.cs" />
     <Compile Include="Device\DigitalInputPin.cs" />
     <Compile Include="Device\DigitalOutputPin.cs" />
+    <Compile Include="Device\DigitalPin.cs" />
     <Compile Include="Device\Pin.cs" />
     <Compile Include="Device\PinCollection.cs" />
     <Compile Include="Helpers\Delay.cs" />
