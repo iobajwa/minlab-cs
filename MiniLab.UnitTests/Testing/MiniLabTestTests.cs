@@ -60,12 +60,12 @@ namespace MiniLab.UnitTests.Testing.when_creating_a_new_MiniLabTest_instance
                 new AnalogFunctionReport(3, true, 50, 60),
             };
             _mockUSBDevice.Setup(device => device.EnumerateAnalogFunctions()).Returns(dummyEnumerationReport).Verifiable();
-            PinCollection expectedAIPins = new PinCollection()
+            PinCollection<AnalogInputPin> expectedAIPins = new PinCollection<AnalogInputPin>()
             {
                 new AnalogInputPin(2, _mockUSBDevice.Object, 30, 40),
                 new AnalogInputPin(3, _mockUSBDevice.Object, 50, 60),
             };
-            PinCollection expectedAOPins = new PinCollection()
+            PinCollection<AnalogOutputPin> expectedAOPins = new PinCollection<AnalogOutputPin>()
             {
                 new AnalogOutputPin(1, _mockUSBDevice.Object, 10, 20),
             };
@@ -78,9 +78,9 @@ namespace MiniLab.UnitTests.Testing.when_creating_a_new_MiniLabTest_instance
             Assert.That(_miniLabTestBase.MiniLab.AnalogInputPins.Count, Is.EqualTo(expectedAIPins.Count));
             Assert.That(_miniLabTestBase.MiniLab.AnalogOutputPins.Count, Is.EqualTo(expectedAOPins.Count));
             for (int i = 0; i < expectedAIPins.Count; i++)
-                Assert.That(AreAnalogPinsIdentical((AnalogInputPin)_miniLabTestBase.MiniLab.AnalogInputPins[0], (AnalogInputPin)expectedAIPins[0]), Is.True);
+                Assert.That(AreAnalogPinsIdentical(_miniLabTestBase.MiniLab.AnalogInputPins[0], expectedAIPins[0]), Is.True);
             for (int i = 0; i < expectedAIPins.Count; i++)
-                Assert.That(AreAnalogPinsIdentical((AnalogOutputPin)_miniLabTestBase.MiniLab.AnalogOutputPins[0], (AnalogOutputPin)expectedAOPins[0]), Is.True);
+                Assert.That(AreAnalogPinsIdentical(_miniLabTestBase.MiniLab.AnalogOutputPins[0], expectedAOPins[0]), Is.True);
         }
 
         [Test]
@@ -93,12 +93,12 @@ namespace MiniLab.UnitTests.Testing.when_creating_a_new_MiniLabTest_instance
                 new DigitalFunctionReport(3, true),
             };
             _mockUSBDevice.Setup(device => device.EnumerateDigitalFunctions()).Returns(dummyEnumerationReport).Verifiable();
-            PinCollection expectedDIPins = new PinCollection()
+            PinCollection<DigitalInputPin> expectedDIPins = new PinCollection<DigitalInputPin>()
             {
                 new DigitalInputPin(2, _mockUSBDevice.Object),
                 new DigitalInputPin(3, _mockUSBDevice.Object),
             };
-            PinCollection expectedDOPins = new PinCollection()
+            PinCollection<DigitalOutputPin> expectedDOPins = new PinCollection<DigitalOutputPin>()
             {
                 new DigitalOutputPin(1, _mockUSBDevice.Object),
             };
@@ -111,9 +111,9 @@ namespace MiniLab.UnitTests.Testing.when_creating_a_new_MiniLabTest_instance
             Assert.That(_miniLabTestBase.MiniLab.DigitalInputPins.Count, Is.EqualTo(expectedDIPins.Count));
             Assert.That(_miniLabTestBase.MiniLab.DigitalOutputPins.Count, Is.EqualTo(expectedDOPins.Count));
             for (int i = 0; i < expectedDIPins.Count; i++)
-                Assert.That(AreDigitalPinsIdentical((DigitalInputPin)_miniLabTestBase.MiniLab.DigitalInputPins[0], (DigitalInputPin)expectedDIPins[0]), Is.True);
+                Assert.That(AreDigitalPinsIdentical(_miniLabTestBase.MiniLab.DigitalInputPins[0], expectedDIPins[0]), Is.True);
             for (int i = 0; i < expectedDIPins.Count; i++)
-                Assert.That(AreDigitalPinsIdentical((DigitalOutputPin)_miniLabTestBase.MiniLab.DigitalOutputPins[0], (DigitalOutputPin)expectedDOPins[0]), Is.True);
+                Assert.That(AreDigitalPinsIdentical(_miniLabTestBase.MiniLab.DigitalOutputPins[0], expectedDOPins[0]), Is.True);
         }
 
         bool AreAnalogPinsIdentical(AnalogPin pin1, AnalogPin pin2)

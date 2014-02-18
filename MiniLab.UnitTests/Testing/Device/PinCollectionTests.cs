@@ -13,12 +13,12 @@ namespace MiniLab.UnitTests.Testing.Device.Pins
 {
     public class pin_collection_test_fixture_base
     {
-        protected PinCollection _pins;
+        protected PinCollection<Pin> _pins;
 
         [SetUp]
         public void Setup()
         {
-            _pins = new PinCollection();
+            _pins = new PinCollection<Pin>();
         }
     }
 

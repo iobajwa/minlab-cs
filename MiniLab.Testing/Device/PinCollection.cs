@@ -10,16 +10,16 @@ namespace MiniLab.Testing.Device
     /// <summary>
     /// Provides functionality to hold a collection of Pins.
     /// </summary>
-    public class PinCollection : List<Pin>
+    public class PinCollection<T> : List<T> where T : Pin
     {
         public void RemoveError()
         {
             throw new InvalidOperationException("Pins cannot be removed.");
         }
 
-        new public void Remove(Pin item) { RemoveError(); }
+        new public void Remove(T item) { RemoveError(); }
 
-        new public void RemoveAll(Predicate<Pin> criteria) { RemoveError(); }
+        new public void RemoveAll(Predicate<T> criteria) { RemoveError(); }
 
         new public void RemoveAt(int index) { RemoveError(); }
 
@@ -37,7 +37,7 @@ namespace MiniLab.Testing.Device
         /// </summary>
         /// <param name="tag">Tag should follow following format: Pin#ID# or P#ID# (case insensitive)</param>
         /// <returns></returns>
-        public Pin this[string tag] 
+        public T this[string tag] 
         {
             get 
             {
@@ -56,7 +56,7 @@ namespace MiniLab.Testing.Device
         /// </summary>
         /// <param name="index"></param>
         /// <returns></returns>
-        new public Pin this[int index]
+        new public T this[int index]
         {
             get { return base[index]; }
         }
@@ -66,7 +66,7 @@ namespace MiniLab.Testing.Device
         /// </summary>
         public void ResetAll()
         {
-            ForEach((Pin p) => p.Reset());
+            ForEach((T p) => p.Reset());
         }
     }
 }

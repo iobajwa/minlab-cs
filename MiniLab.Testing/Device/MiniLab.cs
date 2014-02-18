@@ -14,30 +14,30 @@ namespace MiniLab.Testing.Device
         /// <summary>
         /// Gets the Digital Input Pins supported by the MiniLab Device.
         /// </summary>
-        public PinCollection DigitalInputPins { get; internal set; }
+        public PinCollection<DigitalInputPin> DigitalInputPins { get; internal set; }
 
         /// <summary>
         /// Gets the Digital Output Pins supported by the MiniLab Device.
         /// </summary>
-        public PinCollection DigitalOutputPins { get; internal set; }
+        public PinCollection<DigitalOutputPin> DigitalOutputPins { get; internal set; }
         
         /// <summary>
         /// Gets the Analog Input Pins supported by the MiniLab Device.
         /// </summary>
-        public PinCollection AnalogInputPins { get; internal set; }
+        public PinCollection<AnalogInputPin> AnalogInputPins { get; internal set; }
 
         /// <summary>
         /// Gets the Analog Output Pins supported by the MiniLab Device.
         /// </summary>
-        public PinCollection AnalogOutputPins { get; internal set; }
+        public PinCollection<AnalogOutputPin> AnalogOutputPins { get; internal set; }
         
 
         internal MiniLab()
         {
-            AnalogInputPins = new PinCollection();
-            AnalogOutputPins = new PinCollection();
-            DigitalInputPins = new PinCollection();
-            DigitalOutputPins = new PinCollection();
+            AnalogInputPins = new PinCollection<AnalogInputPin>();
+            AnalogOutputPins = new PinCollection<AnalogOutputPin>();
+            DigitalInputPins = new PinCollection<DigitalInputPin>();
+            DigitalOutputPins = new PinCollection<DigitalOutputPin>();
         }
     }
 }
