@@ -21,8 +21,10 @@ namespace MiniLab.Testing.Device
         new public IDigitalOutputDevice ParentDevice { get; private set; }
 
         public DigitalOutputPin(uint pinID, IDigitalOutputDevice parent)
-            : base(pinID, parent)
-        { }
+            : base(pinID)
+        {
+            ParentDevice = parent;
+        }
 
         /// <summary>
         /// Sets or Resets the state of the pin on the underlying hardware

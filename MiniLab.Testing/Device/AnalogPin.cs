@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using MiniLab.Device;
 using MiniLab.Testing.Measurement;
 
 namespace MiniLab.Testing.Device
@@ -11,6 +12,11 @@ namespace MiniLab.Testing.Device
     public class AnalogPin : Pin
     {
         protected Scale BinaryScale { get; set; }
+
+        /// <summary>
+        /// Gets the reference to the underlying Parent Device.
+        /// </summary>
+        public IAnalogDevice ParentDevice { get; protected set; }
 
         /// <summary>
         /// Gets the Minimum value (in binary) which can be written onto the Analog Pin.

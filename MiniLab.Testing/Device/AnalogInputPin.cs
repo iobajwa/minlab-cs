@@ -22,7 +22,7 @@ namespace MiniLab.Testing.Device
         /// <summary>
         /// Gets the reference to the underlying Parent Device.
         /// </summary>
-        public IAnalogInputDevice ParentDevice { get; protected set; }
+        new public IAnalogInputDevice ParentDevice { get; protected set; }
 
         /// <summary>
         /// Reads the current analog value on the pin.

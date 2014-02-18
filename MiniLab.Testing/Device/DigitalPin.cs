@@ -10,11 +10,10 @@ namespace MiniLab.Testing.Device
 {
     public class DigitalPin : Pin
     {
-        public IDigitalDevice ParentDevice { get; private set; }
+        public IDigitalDevice ParentDevice { get; protected set; }
 
-        public DigitalPin(uint pinID, IDigitalDevice parentDevice) : base(pinID)
-        {
-            ParentDevice = parentDevice;
-        }
+        public DigitalPin(uint pinID)
+            : base(pinID)
+        { }
     }
 }
