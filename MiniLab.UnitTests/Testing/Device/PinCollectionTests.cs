@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using MiniLab.Device;
+using MiniLab.Testing.Device;
 
 using Moq;
 using NUnit.Framework;
 
-namespace MiniLab.UnitTests.Device.Pins
+namespace MiniLab.UnitTests.Testing.Device.Pins
 {
     public class pin_collection_test_fixture_base
     {

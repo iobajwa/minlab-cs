@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using SystemInterface.Threading;
 
-namespace MiniLab.Helpers
+namespace MiniLab.Testing.Helpers
 {
     public interface IDelay
     {

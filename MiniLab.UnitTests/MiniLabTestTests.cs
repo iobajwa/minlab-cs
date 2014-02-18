@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 using NUnit.Framework;
 using Moq;
 
-using MiniLab;
-using MiniLab.Device;
+using MiniLab.Testing;
+using MiniLab.Testing.Device;
 
-namespace MiniLab.UnitTests
+namespace MiniLab.UnitTests.Testing
 {
     [TestFixture]
     public class when_creating_a_new_MiniLabTest_instance

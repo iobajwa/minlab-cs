@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MiniLab.Device
+namespace MiniLab.Testing.Device
 {
     /// <summary>
     /// Provides functionality to hold a collection of Pins.

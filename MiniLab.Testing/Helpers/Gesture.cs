@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MiniLab.Helpers
+namespace MiniLab.Testing.Helpers
 {
     /// <summary>
     /// Provides functionality to enlist a set of actions and 'play' (act upon each) when directed.

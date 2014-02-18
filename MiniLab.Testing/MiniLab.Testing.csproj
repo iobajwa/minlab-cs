@@ -7,7 +7,7 @@
     <ProjectGuid>{9EE087B0-5E99-4980-8FB0-56B77672514E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MiniLab</RootNamespace>
+    <RootNamespace>MiniLab.Testing</RootNamespace>
     <AssemblyName>MiniLab.Testing</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

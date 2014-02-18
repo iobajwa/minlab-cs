@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using MiniLab.Helpers;
+using MiniLab.Testing.Helpers;
 
 using Moq;
 using NUnit.Framework;
 
-namespace MiniLab.UnitTests.Helpers.Gestures
+namespace MiniLab.UnitTests.Testing.Helpers.Gestures
 {
     public class gesture_test_fixture_base
     {

@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using MiniLab.Device;
-using MiniLab.Measurement;
+using MiniLab.Testing.Device;
+using MiniLab.Testing.Measurement;
 
 using NUnit.Framework;
 using Moq;
 
-namespace MiniLab.UnitTests.Device.Analog
+namespace MiniLab.UnitTests.Testing.Device.Analog
 {
     [TestFixture]
     public class when_constructing_an_analog_pin

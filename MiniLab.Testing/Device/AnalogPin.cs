@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using MiniLab.Measurement;
+using MiniLab.Testing.Measurement;
 
-namespace MiniLab.Device
+namespace MiniLab.Testing.Device
 {
     public class AnalogPin : Pin
     {

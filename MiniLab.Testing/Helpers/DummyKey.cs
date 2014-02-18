@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using MiniLab.Device;
+using MiniLab.Testing.Device;
 
-namespace MiniLab.Helpers
+namespace MiniLab.Testing.Helpers
 {
     /// <summary>
     /// Provides functionality related to simulate Hardware 'Keys' on Digital Output pins.

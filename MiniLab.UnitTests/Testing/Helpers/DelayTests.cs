@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using MiniLab.Helpers;
+using MiniLab.Testing.Helpers;
 
 using SystemInterface.Threading;
 
 using NUnit.Framework;
 using Moq;
 
-namespace MiniLab.UnitTests.Helpers.Delays
+namespace MiniLab.UnitTests.Testing.Helpers.Delays
 {
     class basic_delay_test_fixture
     {

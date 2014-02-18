@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using MiniLab.Measurement;
+using MiniLab.Testing.Measurement;
 
 using NUnit.Framework;
 
-namespace MiniLab.UnitTests.Measurement
+namespace MiniLab.UnitTests.Testing.Measurement
 {
     [TestFixture]
     public class when_configuring_a_measurement_context

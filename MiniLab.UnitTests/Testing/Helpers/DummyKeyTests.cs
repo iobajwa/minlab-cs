@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using MiniLab.Device;
-using MiniLab.Helpers;
+using MiniLab.Testing.Device;
+using MiniLab.Testing.Helpers;
 
 using Moq;
 using NUnit.Framework;
 
-namespace MiniLab.UnitTests.Helpers.Keys
+namespace MiniLab.UnitTests.Testing.Helpers.Keys
 {
     public class dummy_key_test_fixture_base
     {

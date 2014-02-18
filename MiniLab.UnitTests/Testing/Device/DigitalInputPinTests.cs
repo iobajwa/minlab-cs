@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using MiniLab.Device;
+using MiniLab.Testing.Device;
 
 using NUnit.Framework;
 using Moq;
 
-namespace MiniLab.UnitTests.Device.Digital
+namespace MiniLab.UnitTests.Testing.Device.Digital
 {
     [TestFixture]
     class when_interacting_with_DigitalInputPin

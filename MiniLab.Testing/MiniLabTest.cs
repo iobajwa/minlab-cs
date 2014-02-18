@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using MiniLab.Device;
+using MiniLab.Testing.Device;
 
-namespace MiniLab
+namespace MiniLab.Testing
 {
     public class MiniLabTest
     {
