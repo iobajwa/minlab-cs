@@ -9,7 +9,7 @@ using MiniLab.Device;
 using Moq;
 using NUnit.Framework;
 
-namespace MiniLab.Tests.Device.Pins
+namespace MiniLab.UnitTests.Device.Pins
 {
     public class pin_collection_test_fixture_base
     {

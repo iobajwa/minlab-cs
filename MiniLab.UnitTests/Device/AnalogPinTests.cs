@@ -10,7 +10,7 @@ using MiniLab.Measurement;
 using NUnit.Framework;
 using Moq;
 
-namespace MiniLab.Tests.Device.Analog
+namespace MiniLab.UnitTests.Device.Analog
 {
     [TestFixture]
     public class when_constructing_an_analog_pin

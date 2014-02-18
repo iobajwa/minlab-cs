@@ -9,7 +9,7 @@ using MiniLab.Helpers;
 using Moq;
 using NUnit.Framework;
 
-namespace MiniLab.Tests.Helpers.Gestures
+namespace MiniLab.UnitTests.Helpers.Gestures
 {
     public class gesture_test_fixture_base
     {

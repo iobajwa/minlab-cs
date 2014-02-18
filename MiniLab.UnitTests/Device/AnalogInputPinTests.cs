@@ -10,7 +10,7 @@ using MiniLab.Measurement;
 using NUnit.Framework;
 using Moq;
 
-namespace MiniLab.Tests.Device.Analog.AnalogInput
+namespace MiniLab.UnitTests.Device.Analog.AnalogInput
 {
     #region base test class
     public class analog_input_pin_test_base

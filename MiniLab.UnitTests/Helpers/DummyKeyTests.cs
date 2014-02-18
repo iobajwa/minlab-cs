@@ -10,7 +10,7 @@ using MiniLab.Helpers;
 using Moq;
 using NUnit.Framework;
 
-namespace MiniLab.Tests.Helpers.Keys
+namespace MiniLab.UnitTests.Helpers.Keys
 {
     public class dummy_key_test_fixture_base
     {

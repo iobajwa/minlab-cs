@@ -10,7 +10,7 @@ using Moq;
 using MiniLab;
 using MiniLab.Device;
 
-namespace MiniLab.Tests
+namespace MiniLab.UnitTests
 {
     [TestFixture]
     public class when_creating_a_new_MiniLabTest_instance

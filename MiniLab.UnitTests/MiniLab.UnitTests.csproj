@@ -7,7 +7,7 @@
     <ProjectGuid>{3697C04F-BD32-4364-ADB7-5FDA240B3921}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MiniLab.Tests</RootNamespace>
+    <RootNamespace>MiniLab.UnitTests</RootNamespace>
     <AssemblyName>MiniLab.UnitTests</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -62,12 +62,14 @@
     <Compile Include="MiniLabTestTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MiniLab\MiniLab.csproj">
+    <Folder Include="Testing\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MiniLab.Testing\MiniLab.Testing.csproj">
       <Project>{9ee087b0-5e99-4980-8fb0-56b77672514e}</Project>
-      <Name>MiniLab</Name>
+      <Name>MiniLab.Testing</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

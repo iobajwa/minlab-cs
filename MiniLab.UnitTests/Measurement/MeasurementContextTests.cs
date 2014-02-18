@@ -8,7 +8,7 @@ using MiniLab.Measurement;
 
 using NUnit.Framework;
 
-namespace MiniLab.Tests.Measurement
+namespace MiniLab.UnitTests.Measurement
 {
     [TestFixture]
     public class when_configuring_a_measurement_context
