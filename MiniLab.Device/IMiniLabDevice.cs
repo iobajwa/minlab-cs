@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using MiniLab.Device.Enumeration;
+
 namespace MiniLab.Device
 {
     public interface IDigitalDevice
@@ -38,5 +40,8 @@ namespace MiniLab.Device
 
         void Connect();
         //void Reset();
+
+        List<AnalogFunctionReport> EnumerateAnalogFunctions();
+        List<DigitalFunctionReport> EnumerateDigitalFunctions();
     }
 }
