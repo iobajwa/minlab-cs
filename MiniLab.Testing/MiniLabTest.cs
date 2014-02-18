@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using MiniLab.Testing.Device;
+using MiniLab.Device;
 
 namespace MiniLab.Testing
 {

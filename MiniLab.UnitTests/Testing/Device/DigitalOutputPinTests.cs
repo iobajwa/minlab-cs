@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using MiniLab.Device;
 using MiniLab.Testing.Device;
 
 using NUnit.Framework;

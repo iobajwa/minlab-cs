@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MiniLab.Testing.Device
+namespace MiniLab.Device
 {
     public interface IDigitalInputDevice
     {

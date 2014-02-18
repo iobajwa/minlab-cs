@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using MiniLab.Device;
+
 namespace MiniLab.Testing.Device
 {
     public class DigitalInputPin : Pin

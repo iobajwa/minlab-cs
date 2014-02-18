@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using NUnit.Framework;
 using Moq;
 
+using MiniLab.Device;
 using MiniLab.Testing;
 using MiniLab.Testing.Device;
 
