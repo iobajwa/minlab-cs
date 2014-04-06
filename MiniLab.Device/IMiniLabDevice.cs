@@ -37,6 +37,7 @@ namespace MiniLab.Device
     public interface IMiniLabDevice : IDigitalInputDevice, IDigitalOutputDevice, IAnalogInputDevice, IAnalogOutputDevice
     {
         bool Connected { get; }
+        //string SerialNumber { get; set; }
 
         void Connect();
         //void Reset();
