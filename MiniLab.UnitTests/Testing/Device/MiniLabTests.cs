@@ -4,42 +4,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using MiniLab.Device;
+using MiniLab.Device.Enumeration;
+using MiniLab.Testing.Device;
+
 using NUnit.Framework;
 using Moq;
 
-using MiniLab.Device;
-using MiniLab.Device.Enumeration;
-using MiniLab.Testing;
-using MiniLab.Testing.Device;
-
-namespace MiniLab.UnitTests.Testing.when_creating_a_new_MiniLabTest_instance
+namespace MiniLab.UnitTests.Testing.Device.MiniLab_
 {
-    public class MiniLabTest_test_fixture_base
+    [TestFixture]
+    class when_creating_a_new_MiniLab_instance
     {
-        protected Mock<IMiniLabDevice> _mockUSBDevice;
-        protected MiniLabTest _miniLabTestBase;
+        Mock<IMiniLabDevice> _mockUSBDevice;
+        MiniLab.Testing.Device.MiniLab _lab;
 
         [SetUp]
         public void Setup()
         {
-            _mockUSBDevice = new Mock<IMiniLabDevice>(MockBehavior.Strict);
-        }
-
-        [TearDown]
-        public void VerifyMocks()
-        {
-            _mockUSBDevice.VerifyAll();
-        }
-    }
-
-    [TestFixture]
-    public class and_no_connection_is_in_place : MiniLabTest_test_fixture_base
-    {
-        [SetUp]
-        new public void Setup()
-        {
             _mockUSBDevice = new Mock<IMiniLabDevice>();
-            _mockUSBDevice.Setup(device => device.Connected).Returns(false);
         }
 
         [Test]
@@ -47,7 +30,7 @@ namespace MiniLab.UnitTests.Testing.when_creating_a_new_MiniLabTest_instance
         {
             _mockUSBDevice.Setup(device => device.Connect()).Verifiable();
 
-            _miniLabTestBase = new MiniLabTest(_mockUSBDevice.Object);
+            _lab = new MiniLab.Testing.Device.MiniLab(_mockUSBDevice.Object);
         }
 
         [Test]
@@ -72,15 +55,16 @@ namespace MiniLab.UnitTests.Testing.when_creating_a_new_MiniLabTest_instance
 
 
 
-            _miniLabTestBase = new MiniLabTest(_mockUSBDevice.Object);
+            _lab = new MiniLab.Testing.Device.MiniLab(_mockUSBDevice.Object);
 
 
-            Assert.That(_miniLabTestBase.MiniLab.AnalogInputPins.Count, Is.EqualTo(expectedAIPins.Count));
-            Assert.That(_miniLabTestBase.MiniLab.AnalogOutputPins.Count, Is.EqualTo(expectedAOPins.Count));
+
+            Assert.That(_lab.AnalogInputPins.Count, Is.EqualTo(expectedAIPins.Count));
+            Assert.That(_lab.AnalogOutputPins.Count, Is.EqualTo(expectedAOPins.Count));
             for (int i = 0; i < expectedAIPins.Count; i++)
-                Assert.That(AreAnalogPinsIdentical(_miniLabTestBase.MiniLab.AnalogInputPins[0], expectedAIPins[0]), Is.True);
+                Assert.That(AreAnalogPinsIdentical(_lab.AnalogInputPins[0], expectedAIPins[0]), Is.True);
             for (int i = 0; i < expectedAIPins.Count; i++)
-                Assert.That(AreAnalogPinsIdentical(_miniLabTestBase.MiniLab.AnalogOutputPins[0], expectedAOPins[0]), Is.True);
+                Assert.That(AreAnalogPinsIdentical(_lab.AnalogOutputPins[0], expectedAOPins[0]), Is.True);
         }
 
         [Test]
@@ -105,15 +89,16 @@ namespace MiniLab.UnitTests.Testing.when_creating_a_new_MiniLabTest_instance
 
 
 
-            _miniLabTestBase = new MiniLabTest(_mockUSBDevice.Object);
+            _lab = new MiniLab.Testing.Device.MiniLab(_mockUSBDevice.Object);
 
 
-            Assert.That(_miniLabTestBase.MiniLab.DigitalInputPins.Count, Is.EqualTo(expectedDIPins.Count));
-            Assert.That(_miniLabTestBase.MiniLab.DigitalOutputPins.Count, Is.EqualTo(expectedDOPins.Count));
+
+            Assert.That(_lab.DigitalInputPins.Count, Is.EqualTo(expectedDIPins.Count));
+            Assert.That(_lab.DigitalOutputPins.Count, Is.EqualTo(expectedDOPins.Count));
             for (int i = 0; i < expectedDIPins.Count; i++)
-                Assert.That(AreDigitalPinsIdentical(_miniLabTestBase.MiniLab.DigitalInputPins[0], expectedDIPins[0]), Is.True);
+                Assert.That(AreDigitalPinsIdentical(_lab.DigitalInputPins[0], expectedDIPins[0]), Is.True);
             for (int i = 0; i < expectedDIPins.Count; i++)
-                Assert.That(AreDigitalPinsIdentical(_miniLabTestBase.MiniLab.DigitalOutputPins[0], expectedDOPins[0]), Is.True);
+                Assert.That(AreDigitalPinsIdentical(_lab.DigitalOutputPins[0], expectedDOPins[0]), Is.True);
         }
 
         bool AreAnalogPinsIdentical(AnalogPin pin1, AnalogPin pin2)
@@ -138,18 +123,6 @@ namespace MiniLab.UnitTests.Testing.when_creating_a_new_MiniLabTest_instance
                 return true;
             else
                 return false;
-        }
-    }
-
-    [TestFixture]
-    public class and_connection_is_already_in_place : MiniLabTest_test_fixture_base
-    {
-        [Test]
-        public void _01_SHOULD_not_attempt_to_connect_and_perform_enumeration_with_the_usb_device()
-        {
-            _mockUSBDevice.Setup(device => device.Connected).Returns(true);
-
-            _miniLabTestBase = new MiniLabTest(_mockUSBDevice.Object);
         }
     }
 }

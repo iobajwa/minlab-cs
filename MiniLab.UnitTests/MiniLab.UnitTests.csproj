@@ -55,12 +55,12 @@
     <Compile Include="Testing\Device\AnalogPinTests.cs" />
     <Compile Include="Testing\Device\DigitalInputPinTests.cs" />
     <Compile Include="Testing\Device\DigitalOutputPinTests.cs" />
+    <Compile Include="Testing\Device\MiniLabTests.cs" />
     <Compile Include="Testing\Device\PinCollectionTests.cs" />
     <Compile Include="Testing\Helpers\DelayTests.cs" />
     <Compile Include="Testing\Helpers\DummyKeyTests.cs" />
     <Compile Include="Testing\Helpers\GestureTests.cs" />
     <Compile Include="Testing\Measurement\MeasurementContextTests.cs" />
-    <Compile Include="Testing\MiniLabTestTests.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
