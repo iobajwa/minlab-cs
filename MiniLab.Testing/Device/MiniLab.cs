@@ -45,14 +45,13 @@ namespace MiniLab.Testing.Device
             DigitalOutputPins = new PinCollection<DigitalOutputPin>();
 
             _device = device;
-            Connect();
+            ConstructDeviceFunctions();
         }
 
 
-        #region this.Connect and Helpers
-        private void Connect()
+        #region this.ConstructDeviceFunctions and Helpers
+        private void ConstructDeviceFunctions()
         {
-            _device.Connect();
             EnumerateDigitalFunctions();
             EnumerateAnalogFunctions();
         }

@@ -39,7 +39,6 @@ namespace MiniLab.Device
         bool Connected { get; }
         //string SerialNumber { get; set; }
 
-        void Connect();
         //void Reset();
 
         List<AnalogFunctionReport> EnumerateAnalogFunctions();

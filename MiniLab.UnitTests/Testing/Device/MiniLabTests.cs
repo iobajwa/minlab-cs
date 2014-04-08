@@ -26,15 +26,7 @@ namespace MiniLab.UnitTests.Testing.Device.MiniLab_
         }
 
         [Test]
-        public void _01_SHOULD_attempt_to_connect_with_the_usb_device_WHEN_the_connection_has_not_been_already_made()
-        {
-            _mockUSBDevice.Setup(device => device.Connect()).Verifiable();
-
-            _lab = new MiniLab.Testing.Device.MiniLab(_mockUSBDevice.Object);
-        }
-
-        [Test]
-        public void _02_SHOULD_enumerate_the_device_for_analog_functions_and_construct_analog_pins_accordingly()
+        public void _01_SHOULD_enumerate_the_device_for_analog_functions_and_construct_analog_pins_accordingly()
         {
             List<AnalogFunctionReport> dummyEnumerationReport = new List<AnalogFunctionReport>()
             {
@@ -68,7 +60,7 @@ namespace MiniLab.UnitTests.Testing.Device.MiniLab_
         }
 
         [Test]
-        public void _03_SHOULD_enumerate_the_device_for_digital_functions_and_construct_digital_pins_accordingly()
+        public void _02_SHOULD_enumerate_the_device_for_digital_functions_and_construct_digital_pins_accordingly()
         {
             List<DigitalFunctionReport> dummyEnumerationReport = new List<DigitalFunctionReport>()
             {

@@ -15,11 +15,6 @@ namespace MiniLab.Device
         private IHIDDevice _hidDevice;
         public bool Connected { get; private set; }
 
-        //public MiniLabDevice(IHIDDevice hidDevice)
-        //{
-        //    _hidDevice = hidDevice;
-        //}
-
         public MiniLabDevice(IHIDFinder hidFinder)
         {
             try
@@ -31,16 +26,6 @@ namespace MiniLab.Device
             {
                 Connected = false;
             }
-        }
-
-
-        /// <summary>
-        /// Finds and connects with the MiniLab device hardware attached on the USB bus.
-        /// </summary>
-        public void Connect()
-        {
-            //_hidDevice.FindDevice();
-            throw new NotImplementedException();
         }
 
 
