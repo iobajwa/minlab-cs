@@ -12,7 +12,7 @@ using USBHostLib;
 using Moq;
 using NUnit.Framework;
 
-namespace MiniLab.UnitTests.Device.MiniLab
+namespace MiniLab.UnitTests.Device.MiniLabDevice_
 {
     class when_constructing_a_new_MiniLabDevice
     {
