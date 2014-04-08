@@ -15,9 +15,21 @@ namespace MiniLab.Device
         private IHIDDevice _hidDevice;
         public bool Connected { get; private set; }
 
-        public MiniLabDevice(IHIDDevice hidDevice)
+        //public MiniLabDevice(IHIDDevice hidDevice)
+        //{
+        //    _hidDevice = hidDevice;
+        //}
+
+        public MiniLabDevice(IHIDFinder hidFinder)
         {
-            _hidDevice = hidDevice;
+            try
+            {
+                _hidDevice = hidFinder.FindDevice(0x8d8, 0x101);
+            }
+            catch (DeviceNotFoundException)
+            {
+                throw new DeviceNotFoundException("No MiniLab device connected with this computer.");
+            }
         }
 
 

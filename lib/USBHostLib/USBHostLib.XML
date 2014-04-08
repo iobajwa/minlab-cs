@@ -68,5 +68,10 @@
             Class represents a HID Device.
             </summary>
         </member>
+        <member name="T:USBHostLib.DeviceNotFoundException">
+            <summary>
+            Exception is thrown when a USB device is not found (is not attached with the computer).
+            </summary>
+        </member>
     </members>
 </doc>
