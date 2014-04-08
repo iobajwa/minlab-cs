@@ -44,6 +44,10 @@
     <Reference Include="SystemInterface">
       <HintPath>..\lib\SystemWrapper\SystemInterface.dll</HintPath>
     </Reference>
+    <Reference Include="USBHostLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\USBHostLib\USBHostLib.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bindings.cs" />

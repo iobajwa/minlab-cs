@@ -8,13 +8,20 @@ using MiniLab.Device;
 using MiniLab.Device.Enumeration;
 using MiniLab.Testing.Device;
 
+using Ninject;
+
 namespace MiniLab.Testing
 {
     public class MiniLabTest
     {
-        public MiniLabTest()
+        protected static IKernel Kernel { get; private set; }
+
+        protected static Device.MiniLab MiniLab_ { get; private set; }
+
+        static MiniLabTest()
         {
-            throw new NotImplementedException();
+            Kernel = new StandardKernel(new MiniLab.Device.Bindings(), new MiniLab.Testing.Bindings(), new USBHostLib.Bindings());
+            MiniLab_ = Kernel.Get<MiniLab.Testing.Device.MiniLab>();
         }
     }
 }
