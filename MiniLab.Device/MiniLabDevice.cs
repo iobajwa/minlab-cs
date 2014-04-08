@@ -6,14 +6,16 @@ using System.Threading.Tasks;
 
 using MiniLab.Device.Enumeration;
 
+using USBHostLib;
+
 namespace MiniLab.Device
 {
     public class MiniLabDevice : IMiniLabDevice
     {
-        private IUSBHIDDevice _hidDevice;
+        private IHIDDevice _hidDevice;
         public bool Connected { get; private set; }
 
-        public MiniLabDevice(IUSBHIDDevice hidDevice)
+        public MiniLabDevice(IHIDDevice hidDevice)
         {
             _hidDevice = hidDevice;
         }

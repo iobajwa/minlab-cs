@@ -33,12 +33,4 @@ namespace MiniLab.Device
             : base(message)
         { }
     }
-
-    public interface IUSBHIDDevice
-    {
-        //bool FindDevice();
-
-        void WriteReportViaInterruptTransfer(byte[] buffer);
-        byte[] ReadReportViaInterruptTransfer();
-    }
 }

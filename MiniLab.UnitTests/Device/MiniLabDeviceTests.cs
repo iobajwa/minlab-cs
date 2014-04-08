@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using MiniLab.Device;
 using MiniLab.Device.Enumeration;
 
+using USBHostLib;
+
 using Moq;
 using NUnit.Framework;
 
@@ -15,12 +17,12 @@ namespace MiniLab.UnitTests.Device.MiniLab
     internal class MiniLabDeviceTestsBase
     {
         protected MiniLabDevice _device;
-        protected Mock<IUSBHIDDevice> _mockUSB;
+        protected Mock<IHIDDevice> _mockUSB;
     
         [SetUp]
         public void __Setup()
         {
-            _mockUSB = new Mock<IUSBHIDDevice>(MockBehavior.Strict);
+            _mockUSB = new Mock<IHIDDevice>(MockBehavior.Strict);
             _device = new MiniLabDevice(_mockUSB.Object);
         }
 
@@ -39,7 +41,7 @@ namespace MiniLab.UnitTests.Device.MiniLab
         {
             byte[] commandPacket = new byte[] { (byte)MiniLabCommands.EnumerateDigitalInputOutput };
             _mockUSB
-                .Setup(usb => usb.WriteReportViaInterruptTransfer(commandPacket));
+                .Setup(usb => usb.WriteReportViaInterruptTransfer(commandPacket)).Returns(true);
             _mockUSB
                 .Setup(usb => usb.ReadReportViaInterruptTransfer())
                 .Returns(new byte[] { (byte)MiniLabCommands.EnumerateDigitalInputOutput, 4, 6 });
@@ -103,7 +105,7 @@ namespace MiniLab.UnitTests.Device.MiniLab
         {
             byte[] commandPacket = new byte[] { (byte)MiniLabCommands.EnumerateAnalogInput };
             _mockUSB
-                .Setup(usb => usb.WriteReportViaInterruptTransfer(commandPacket));
+                .Setup(usb => usb.WriteReportViaInterruptTransfer(commandPacket)).Returns(true);
             _mockUSB
                 .Setup(usb => usb.ReadReportViaInterruptTransfer())
                 .Returns(new byte[] { (byte)MiniLabCommands.EnumerateAnalogInput, 1, 1, 2, 3, 4 });
@@ -113,10 +115,10 @@ namespace MiniLab.UnitTests.Device.MiniLab
         {
             byte[] commandPacket = new byte[] { (byte)MiniLabCommands.EnumerateAnalogOutput };
             _mockUSB
-                .Setup(usb => usb.WriteReportViaInterruptTransfer(commandPacket));
+                .Setup(usb => usb.WriteReportViaInterruptTransfer(commandPacket)).Returns(true);
             commandPacket = new byte[] { (byte)MiniLabCommands.EnumerateAnalogInput };
             _mockUSB
-                .Setup(usb => usb.WriteReportViaInterruptTransfer(commandPacket));
+                .Setup(usb => usb.WriteReportViaInterruptTransfer(commandPacket)).Returns(true);
 
             _mockUSB
                 .SetupSequence(usb => usb.ReadReportViaInterruptTransfer())
@@ -177,10 +179,10 @@ namespace MiniLab.UnitTests.Device.MiniLab
         {
             byte[] commandPacket = new byte[] { (byte)MiniLabCommands.EnumerateAnalogOutput };
             _mockUSB
-                .Setup(usb => usb.WriteReportViaInterruptTransfer(commandPacket));
+                .Setup(usb => usb.WriteReportViaInterruptTransfer(commandPacket)).Returns(true);
             commandPacket = new byte[] { (byte)MiniLabCommands.EnumerateAnalogInput };
             _mockUSB
-                .Setup(usb => usb.WriteReportViaInterruptTransfer(commandPacket));
+                .Setup(usb => usb.WriteReportViaInterruptTransfer(commandPacket)).Returns(true);
 
             _mockUSB
                 .SetupSequence(usb => usb.ReadReportViaInterruptTransfer())
@@ -197,10 +199,10 @@ namespace MiniLab.UnitTests.Device.MiniLab
         {
             byte[] commandPacket = new byte[] { (byte)MiniLabCommands.EnumerateAnalogOutput };
             _mockUSB
-                .Setup(usb => usb.WriteReportViaInterruptTransfer(commandPacket));
+                .Setup(usb => usb.WriteReportViaInterruptTransfer(commandPacket)).Returns(true);
             commandPacket = new byte[] { (byte)MiniLabCommands.EnumerateAnalogInput };
             _mockUSB
-                .Setup(usb => usb.WriteReportViaInterruptTransfer(commandPacket));
+                .Setup(usb => usb.WriteReportViaInterruptTransfer(commandPacket)).Returns(true);
 
             _mockUSB
                 .SetupSequence(usb => usb.ReadReportViaInterruptTransfer())
@@ -217,10 +219,10 @@ namespace MiniLab.UnitTests.Device.MiniLab
         {
             byte[] commandPacket = new byte[] { (byte)MiniLabCommands.EnumerateAnalogOutput };
             _mockUSB
-                .Setup(usb => usb.WriteReportViaInterruptTransfer(commandPacket));
+                .Setup(usb => usb.WriteReportViaInterruptTransfer(commandPacket)).Returns(true);
             commandPacket = new byte[] { (byte)MiniLabCommands.EnumerateAnalogInput };
             _mockUSB
-                .Setup(usb => usb.WriteReportViaInterruptTransfer(commandPacket));
+                .Setup(usb => usb.WriteReportViaInterruptTransfer(commandPacket)).Returns(true);
 
             _mockUSB
                 .SetupSequence(usb => usb.ReadReportViaInterruptTransfer())
@@ -236,10 +238,10 @@ namespace MiniLab.UnitTests.Device.MiniLab
         {
             byte[] commandPacket = new byte[] { (byte)MiniLabCommands.EnumerateAnalogOutput };
             _mockUSB
-                .Setup(usb => usb.WriteReportViaInterruptTransfer(commandPacket));
+                .Setup(usb => usb.WriteReportViaInterruptTransfer(commandPacket)).Returns(true);
             commandPacket = new byte[] { (byte)MiniLabCommands.EnumerateAnalogInput };
             _mockUSB
-                .Setup(usb => usb.WriteReportViaInterruptTransfer(commandPacket));
+                .Setup(usb => usb.WriteReportViaInterruptTransfer(commandPacket)).Returns(true);
             _mockUSB
                 .SetupSequence(usb => usb.ReadReportViaInterruptTransfer())
                 .Returns(new byte[] { (byte)MiniLabCommands.EnumerateAnalogInput, 1, 1, 2, 3, 4 })
@@ -275,7 +277,7 @@ namespace MiniLab.UnitTests.Device.MiniLab
         {
             byte[] commandCode = new byte[] { (byte)MiniLabCommands.ReadDigitalPin, 3 };
             _mockUSB
-                .Setup(usb => usb.WriteReportViaInterruptTransfer(commandCode));
+                .Setup(usb => usb.WriteReportViaInterruptTransfer(commandCode)).Returns(true);
             _mockUSB
                 .Setup(usb => usb.ReadReportViaInterruptTransfer())
                 .Returns(new byte[] { (byte)MiniLabCommands.ReadDigitalPin, 3, 0x01 });
@@ -340,7 +342,7 @@ namespace MiniLab.UnitTests.Device.MiniLab
         {
             byte[] commandCode = new byte[] { (byte)MiniLabCommands.WriteDigitalPin, 6, 0x01 };
             _mockUSB
-                .Setup(usb => usb.WriteReportViaInterruptTransfer(commandCode));
+                .Setup(usb => usb.WriteReportViaInterruptTransfer(commandCode)).Returns(true);
             _mockUSB
                 .Setup(usb => usb.ReadReportViaInterruptTransfer())
                 .Returns(commandCode);
@@ -355,11 +357,11 @@ namespace MiniLab.UnitTests.Device.MiniLab
         [Test]
         public void _02_SHOULD_relay_Write_Digital_Pin_report_via_interrupt_transfer_with_status_set_to_false_to_the_underlying_HID_device_WHEN_false_is_passed_as_status()
         {
-            _mockUSB = new Mock<IUSBHIDDevice>(MockBehavior.Strict);
+            _mockUSB = new Mock<IHIDDevice>(MockBehavior.Strict);
             _device = new MiniLabDevice(_mockUSB.Object);
             byte[] commandCode = new byte[] { (byte)MiniLabCommands.WriteDigitalPin, 6, 0x00 };
             _mockUSB
-                .Setup(usb => usb.WriteReportViaInterruptTransfer(commandCode));
+                .Setup(usb => usb.WriteReportViaInterruptTransfer(commandCode)).Returns(true);
             _mockUSB
                 .Setup(usb => usb.ReadReportViaInterruptTransfer())
                 .Returns(commandCode);
@@ -413,7 +415,7 @@ namespace MiniLab.UnitTests.Device.MiniLab
         {
             byte[] commandCode = new byte[] { (byte)MiniLabCommands.ReadAnalogPin, 4 };
             _mockUSB
-                .Setup(usb => usb.WriteReportViaInterruptTransfer(commandCode));
+                .Setup(usb => usb.WriteReportViaInterruptTransfer(commandCode)).Returns(true);
             _mockUSB
                 .Setup(usb => usb.ReadReportViaInterruptTransfer())
                 .Returns(new byte[] { (byte)MiniLabCommands.ReadAnalogPin, 4, 0x01, 0x02, 0x03 });
@@ -466,7 +468,7 @@ namespace MiniLab.UnitTests.Device.MiniLab
         {
             byte[] commandCode = new byte[] { (byte)MiniLabCommands.WriteAnalogPin, 7, 0x01, 0x02, 0x03 };
             _mockUSB
-                .Setup(usb => usb.WriteReportViaInterruptTransfer(commandCode));
+                .Setup(usb => usb.WriteReportViaInterruptTransfer(commandCode)).Returns(true);
             _mockUSB
                 .Setup(usb => usb.ReadReportViaInterruptTransfer())
                 .Returns(commandCode);

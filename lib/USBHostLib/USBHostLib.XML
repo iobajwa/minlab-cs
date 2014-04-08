@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>USBHostLib</name>
+    </assembly>
+    <members>
+        <!-- Badly formed XML comment ignored for member "F:USBHostLib.DeviceManagement.DBT_DEVICEARRIVAL" -->
+        <member name="M:USBHostLib.DeviceManagement.FindDeviceFromGuid(System.Guid,System.String[]@)">
+             <summary>
+             Use SetupDi API functions to retrieve the device path name of an
+             attached device that belongs to a device interface class.
+             </summary>
+             
+             <param name="myGuid"> an interface class GUID. </param>
+             <param name="devicePathNames"> a pointer to the device path name 
+             of an attached device. </param>
+             
+             <returns>
+              True if a device is found, False if not. 
+             </returns>
+        </member>
+        <member name="M:USBHostLib.HID.FlushQueue(Microsoft.Win32.SafeHandles.SafeFileHandle)">
+             <summary>Remove any Input reports waiting in the buffer.</summary>
+             <param name="DeviceHandle"> a handle to a device.</param>
+             <returns>True on success, False on failure.</returns>
+        </member>
+        <member name="M:USBHostLib.HID.GetDeviceCapabilities(Microsoft.Win32.SafeHandles.SafeFileHandle)">
+             <summary>Retrieves a structure with information about a device's capabilities.</summary>
+             <param name="DeviceHandle"> a handle to a device. </param>
+             <returns>An HIDP_CAPS structure.</returns>
+        </member>
+        <member name="M:USBHostLib.IHIDDevice.WriteReportViaInterruptTransfer(System.Byte[])">
+            <summary>
+            Sends the buffer contents as report to the HID Device.
+            </summary>
+            <param name="buffer"></param>
+            <returns>True if written successfully, false otherwise.</returns>
+        </member>
+        <member name="M:USBHostLib.IHIDDevice.ReadReportViaInterruptTransfer">
+            <summary>
+            Reads a report from the HID Device and returns the report contents.
+            </summary>
+            <remarks>Throws TimeoutException if read takes longer time than RequestTimeoutPeriod.</remarks>
+            <returns>The read data contents.</returns>
+        </member>
+        <member name="P:USBHostLib.IHIDDevice.PID">
+            <summary>
+            Product ID of Device.
+            </summary>
+        </member>
+        <member name="P:USBHostLib.IHIDDevice.VID">
+            <summary>
+            Vendor ID of Device.
+            </summary>
+        </member>
+        <member name="P:USBHostLib.IHIDDevice.RequestTimeoutPeriod">
+            <summary>
+            The timeperiod after which a ReadReportViaXXXX times out.
+            </summary>
+        </member>
+        <member name="T:USBHostLib.HIDDeviceCapabilities">
+            <summary>
+            Class represents the Capabilities of a HID Device.
+            </summary>
+        </member>
+        <member name="T:USBHostLib.HIDDevice">
+            <summary>
+            Class represents a HID Device.
+            </summary>
+        </member>
+    </members>
+</doc>

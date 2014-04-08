@@ -7,7 +7,7 @@
     <ProjectGuid>{3697C04F-BD32-4364-ADB7-5FDA240B3921}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MiniLab.Testing.UnitTests.Testing</RootNamespace>
+    <RootNamespace>MiniLab.UnitTests</RootNamespace>
     <AssemblyName>MiniLab.UnitTests</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -45,6 +45,9 @@
     <Reference Include="System.Xml" />
     <Reference Include="SystemInterface">
       <HintPath>..\lib\SystemWrapper\SystemInterface.dll</HintPath>
+    </Reference>
+    <Reference Include="USBHostLib">
+      <HintPath>..\lib\USBHostLib\USBHostLib.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
