@@ -25,10 +25,11 @@ namespace MiniLab.Device
             try
             {
                 _hidDevice = hidFinder.FindDevice(0x8d8, 0x101);
+                Connected = true;
             }
             catch (DeviceNotFoundException)
             {
-                throw new DeviceNotFoundException("No MiniLab device connected with this computer.");
+                Connected = false;
             }
         }
 
@@ -178,6 +179,9 @@ namespace MiniLab.Device
 
         protected byte[] ExecuteCommandOnDevice(byte[] commandPacket)
         {
+            if (!Connected)
+                throw new InvalidOperationException("No matching MiniLab device connected with the computer.");
+
             _hidDevice.WriteReportViaInterruptTransfer(commandPacket);
             return _hidDevice.ReadReportViaInterruptTransfer();
         }

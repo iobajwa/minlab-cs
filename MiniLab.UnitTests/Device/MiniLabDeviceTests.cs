@@ -32,24 +32,27 @@ namespace MiniLab.UnitTests.Device.MiniLab
 
 
         [Test]
-        public void _01_SHOULD_use_IHIDFinder_to_locate_the_MiniLab()
+        public void _01_SHOULD_use_IHIDFinder_to_locate_the_MiniLab_and_set_Connected_to_true()
         {
             _mockFinder
                 .Setup(finder => finder.FindDevice(0x8d8, 0x101))
                 .Returns<IHIDDevice>(null);
 
-            new MiniLabDevice(_mockFinder.Object);
+            MiniLabDevice device = new MiniLabDevice(_mockFinder.Object);
+
+            Assert.That(device.Connected, Is.True);
         }
 
         [Test]
-        [ExpectedException(typeof(DeviceNotFoundException), ExpectedMessage = "No MiniLab device connected with this computer.")]
-        public void _02_SHOULD_throw_DeviceNotFoundException_WHEN_no_MiniLab_device_is_found()
+        public void _02_SHOULD_set_the_Connected_to_false_WHEN_no_device_has_been_found()
         {
             _mockFinder
                 .Setup(finder => finder.FindDevice(0x8d8, 0x101))
                 .Throws(new DeviceNotFoundException("dummy"));
 
-            new MiniLabDevice(_mockFinder.Object);
+            MiniLabDevice device = new MiniLabDevice(_mockFinder.Object);
+
+            Assert.That(device.Connected, Is.False);
         }
     }
 
@@ -78,6 +81,16 @@ namespace MiniLab.UnitTests.Device.MiniLab
             _mockFinder
                 .Setup(finder => finder.FindDevice(It.IsAny<uint>(), It.IsAny<uint>()))
                 .Returns(_mockDevice.Object);
+
+            _device = new MiniLabDevice(_mockFinder.Object);
+        }
+
+        protected void _SetupForNoMiniLabDeviceConnected()
+        {
+            _mockFinder = new Mock<IHIDFinder>();
+            _mockFinder
+                .Setup(finder => finder.FindDevice(It.IsAny<uint>(), It.IsAny<uint>()))
+                .Throws(new DeviceNotFoundException("dummy"));
 
             _device = new MiniLabDevice(_mockFinder.Object);
         }
@@ -143,6 +156,16 @@ namespace MiniLab.UnitTests.Device.MiniLab
             _mockDevice
                 .Setup(usb => usb.ReadReportViaInterruptTransfer())
                 .Returns(new byte[] { (byte)MiniLabCommands.EnumerateDigitalInputOutput, 4 });
+
+            _device.EnumerateDigitalFunctions();
+        }
+
+        [Test]
+        [ExpectedException(typeof(InvalidOperationException), ExpectedMessage = "No matching MiniLab device connected with the computer.")]
+        public void _05_SHOULD_throw_InvalidOperationException_WHEN_device_is_not_connected_to_the_computer()
+        {
+            _SetupForNoMiniLabDeviceConnected();
+            _mockDevice = new Mock<IHIDDevice>();
 
             _device.EnumerateDigitalFunctions();
         }
@@ -317,6 +340,16 @@ namespace MiniLab.UnitTests.Device.MiniLab
             Assert.That(reports[2].BinaryMinimum, Is.EqualTo(8));
             Assert.That(reports[2].BinaryMaximum, Is.EqualTo(0x00050607));
         }
+
+        [Test]
+        [ExpectedException(typeof(InvalidOperationException), ExpectedMessage = "No matching MiniLab device connected with the computer.")]
+        public void _09_SHOULD_throw_InvalidOperationException_WHEN_device_is_not_connected_to_the_computer()
+        {
+            _SetupForNoMiniLabDeviceConnected();
+            _mockDevice = new Mock<IHIDDevice>();
+
+            _device.EnumerateAnalogFunctions();
+        }
     }
 
     [TestFixture]
@@ -379,6 +412,16 @@ namespace MiniLab.UnitTests.Device.MiniLab
                 .Setup(usb => usb.ReadReportViaInterruptTransfer())
                 .Returns(new byte[] { (byte)MiniLabCommands.ReadDigitalPin, 3 });
 
+
+            _device.ReadDigitalInputPin(3);
+        }
+
+        [Test]
+        [ExpectedException(typeof(InvalidOperationException), ExpectedMessage = "No matching MiniLab device connected with the computer.")]
+        public void _06_SHOULD_throw_InvalidOperationException_WHEN_device_is_not_connected_to_the_computer()
+        {
+            _SetupForNoMiniLabDeviceConnected();
+            _mockDevice = new Mock<IHIDDevice>();
 
             _device.ReadDigitalInputPin(3);
         }
@@ -455,6 +498,16 @@ namespace MiniLab.UnitTests.Device.MiniLab
 
             _device.WriteDigitalOutputPin(6, true);
         }
+
+        [Test]
+        [ExpectedException(typeof(InvalidOperationException), ExpectedMessage = "No matching MiniLab device connected with the computer.")]
+        public void _06_SHOULD_throw_InvalidOperationException_WHEN_device_is_not_connected_to_the_computer()
+        {
+            _SetupForNoMiniLabDeviceConnected();
+            _mockDevice = new Mock<IHIDDevice>();
+
+            _device.WriteDigitalOutputPin(6, true);
+        }
     }
 
     [TestFixture]
@@ -505,6 +558,16 @@ namespace MiniLab.UnitTests.Device.MiniLab
                 .Setup(usb => usb.ReadReportViaInterruptTransfer())
                 .Returns(new byte[] { (byte)MiniLabCommands.ReadAnalogPin + 1, 4, 0x01, 0x02, 0x03, 0x04 });
 
+
+            _device.ReadAnalogInputPin(4);
+        }
+
+        [Test]
+        [ExpectedException(typeof(InvalidOperationException), ExpectedMessage = "No matching MiniLab device connected with the computer.")]
+        public void _05_SHOULD_throw_InvalidOperationException_WHEN_device_is_not_connected_to_the_computer()
+        {
+            _SetupForNoMiniLabDeviceConnected();
+            _mockDevice = new Mock<IHIDDevice>();
 
             _device.ReadAnalogInputPin(4);
         }
@@ -562,6 +625,16 @@ namespace MiniLab.UnitTests.Device.MiniLab
                 .Setup(usb => usb.ReadReportViaInterruptTransfer())
                 .Returns(new byte[] { (byte)MiniLabCommands.WriteAnalogPin, 7, 0x03, 0x00, 0x00 });
 
+
+            _device.WriteAnalogOutputPin(7, 0x030201);
+        }
+
+        [Test]
+        [ExpectedException(typeof(InvalidOperationException), ExpectedMessage = "No matching MiniLab device connected with the computer.")]
+        public void _05_SHOULD_throw_InvalidOperationException_WHEN_device_is_not_connected_to_the_computer()
+        {
+            _SetupForNoMiniLabDeviceConnected();
+            _mockDevice = new Mock<IHIDDevice>();
 
             _device.WriteAnalogOutputPin(7, 0x030201);
         }
